@@ -1,0 +1,15 @@
+Social Auth Authentication Workflow
+Begin
+present user with form to sign in with social media...
+When he clicks on it, the control is handed over to social auth... 
+If we get the user details from Hybrid Auth, we find out if the user already has details for that authentication provider in the usersocial table
+if the details exist, we authenticate the user and he logs in.
+If the details do not already exist in our usersocial table, we check if we have details in our users table that matches the email address passed returned by the social media site. In checking, we pull the user details if it exists(ready to be associated in case the user decides to)
+	If it exists, the user is given the opportunity to link the social media details with the details in the user table..
+		If the user agrees to link, we add the user_id from the user table to the usersocial details, save and log the user in
+		if the user does not want to link, we redirect him to user login form to login with email address and password.
+	If there is no entry in the user table that matches the email,
+		we insert the user details into the usertable and usersocial table and log the user in.
+If we do not get user details from hybrid auth, we log error and display user friendly message to the user.
+End
+
